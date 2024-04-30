@@ -1,0 +1,33 @@
+<div class="py-3 register">
+
+
+<h3>login :</h3>
+
+<form [formGroup]="loginForm" (ngSubmit)="handelLogin(loginForm)">
+   <div class="alert alert-danger" *ngIf="apiError.length > 0">{{apiError}}</div>
+   
+    <div class="my-2">
+        <label for="email">email</label>
+    <input formControlName="email" type="email" name="email" id="email" class=" form-control">
+    <div class="alert alert-danger" *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.touched">
+        
+        <p *ngIf="loginForm.get('email')?.getError('email')"> invalid email</p>
+        <p *ngIf="loginForm.get('email')?.getError('required')">email is required</p>
+    </div>
+    </div>
+    <div class="my-2">
+        <label for="password">password</label>
+    <input formControlName="password" type="password" name="password" id="password" class=" form-control">
+    <div class="alert alert-danger" *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched">
+        
+        <p *ngIf="loginForm.get('password')?.getError('pattern')"> password should contain characters and numbers and minlength is 3 and maxlength is 16</p>
+        <p *ngIf="loginForm.get('password')?.getError('required')">email is required</p>
+    </div>
+    </div>
+    <a routerLink="/forgepassword" class="text-danger">forget password ?</a>
+    <button  class="btn btn-success d-block mx-auto" [disabled]="loginForm.invalid">
+        <i *ngIf="isloading" class="fa-solid fa-spinner fa-spin"></i>
+        <span *ngIf="!isloading">login</span>
+    </button>
+</form>
+</div>

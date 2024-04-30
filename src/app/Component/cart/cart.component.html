@@ -1,0 +1,58 @@
+<div class="bg-light p-5 " *ngIf="cartData !=null; else noData" style="margin-top: 100px;">
+    <div class="row">
+        <div class="col-md-6">
+            <h1 class="fw-bold">Cart Shop</h1>
+        </div>
+        <div class="col-md-6">
+            <button class="btn btn-outline-success d-block ms-auto my-4" [routerLink]="['/checkOut',cartData.data._id]">CheckOut</button>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6">
+          <h2 class="fs-5 my-4 fw-bold">Total Price :  <span class="text-main fw-bold"> {{cartData.data.totalCartPrice | currency:"EGP"}}</span> </h2>
+        </div>
+        <div class="col-md-6 ">
+            
+                <h2 class="fs-5 my-4 fw-bold d-flex justify-content-end"> total number of items :  <span class="text-main"> {{cartData.numOfCartItems}} </span> </h2>
+             
+        </div>
+    </div>
+    
+
+   
+<div class="row border-bottom border-3 d-flex align-items-center justify-content-between" *ngFor="let item of cartData.data.products">
+    <div class="col-md-6">
+        <div class="row align-items-center">
+            <div class="col-md-3 my-2">
+                <img [src]="item.product.imageCover" alt="" class="w-100 rounded-2">
+            </div>
+            <div class="col-md-9">
+              <h5>{{item.product.title}}</h5>
+               <p>{{item.price | currency:"EGP"}}</p>
+               <span class="btn btn-outline-danger my-4" (click)="deletProduct(item.product._id)"> <i class="fa-solid fa-trash-can text-danger fa-lg cursor-pointer" ></i>
+              Remove Item
+            </span>
+               
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <span (click)="updateQuantitiy(item.product._id,item.count+1)" class="btn btn-success btn-sm">+</span>
+        <span class="mx-3">{{item.count}}</span>
+        <span class="btn btn-danger btn-sm " (click)="updateQuantitiy(item.product._id,item.count-1)">-</span>
+    </div>
+   
+</div>
+ <button class="btn btn-sm btn-outline-danger d-block mx-auto my-5 w-25" (click)="ClearCart()">Clear Form</button>
+ 
+</div>
+<ng-template #noData  class="">
+    <div class=" " style="margin: 200px 0;">
+      <div class="alert alert-danger my-5  " > cart empty</div>
+    </div>
+   
+</ng-template>
+<div id="loading" class="loading position-fixed top-0 end-0 start-0 bottom-0 bg-dark">
+    <span class="loader"></span>
+  </div>

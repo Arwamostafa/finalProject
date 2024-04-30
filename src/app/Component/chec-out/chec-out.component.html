@@ -1,0 +1,14 @@
+<div class="visa">
+    <form action="" [formGroup]="ShippingForm" (ngSubmit)="sendPaymentData(ShippingForm)">
+    <label for="details">details</label>
+    <input formControlName="details" type="text" class="form-control" name="" id="details">
+    <label for="city">city</label>
+    <input formControlName="city" type="text" class="form-control" name="" id="city">
+    <label for="phone">phone</label>
+    <input formControlName="phone" type="tel" class="form-control" name="" id="phone">
+    <button class="w-100 btn btn-success my-3">Pay <i class="fa-brands mx-2 fa-cc-visa"></i></button>
+</form>
+
+</div>
+
+

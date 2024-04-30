@@ -1,0 +1,13 @@
+<div class="mx-0 px-0 mt-5 mb-2">
+<owl-carousel-o [options]="customOptions" >
+
+    <ng-container *ngFor="let slide of categorySlider">
+      <ng-template carouselSlide  >
+        <img [src]="slide.image" class="smaillImg" >
+        <span class="fw-bolder fs-4" >{{slide.name}}</span>
+      </ng-template>
+    </ng-container>
+
+  </owl-carousel-o>
+
+</div>
